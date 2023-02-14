@@ -1,12 +1,14 @@
 import React from "react";
-import Calculator from "../../../components/Master/Calculator";
+import AdminHome from "../../../components/Master/AdminHome";
+// import Calculator from "../../../components/Master/Calculator";
 import Header from "../../../components/Master/Header";
 
 const Home = () => {
   return (
     <>
       <Header />
-      <Calculator />
+      {/* <Calculator /> */}
+      <AdminHome />
     </>
   );
 };

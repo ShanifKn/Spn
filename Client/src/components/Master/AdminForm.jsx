@@ -5,6 +5,8 @@ import LockIcon from "@mui/icons-material/Lock";
 import { Link, useNavigate } from "react-router-dom";
 import HighlightOffTwoToneIcon from "@mui/icons-material/HighlightOffTwoTone";
 import { useDispatch } from "react-redux";
+import { adminLogin } from "../../api/auth";
+
 import { setAdminLogin } from "../../state/Slice/adminSlice";
 
 const AdminForm = () => {
@@ -35,7 +37,7 @@ const AdminForm = () => {
       setError("Password must be at least 8 characters long.");
       return false;
     }
-    const response = await login(email, password);
+    const response = await adminLogin(email, password);
 
     if (response.status === 400) {
       setError(response.data.error);
@@ -44,11 +46,11 @@ const AdminForm = () => {
     } else {
       dispatch(
         setAdminLogin({
-          user: response.User.userName,
-          token: response.User.token,
+          user: response.Admin.userName,
+          token: response.Admin.token,
         })
       );
-      navigate("/");
+      navigate("/master");
     }
   };
   return (

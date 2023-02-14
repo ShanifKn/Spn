@@ -55,15 +55,15 @@ export const login = async (req, res) => {
 export const adminLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const admin = await adminModel.findOne({ email: email });
+    console.log(req.body);
+    const admin = await userModel.findOne({ email: email });
 
-    if (!admin) return res.status(400).json({ error: "admin does not exist." });
+    if (!admin) return res.status(400).json({ error: " Invalid credentials." });
     if (!admin.role === "master")
       return res.status(400).json({ error: "Authorization block" });
 
     const isMatch = await bcrypt.compare(password, admin.password);
-    if (!isMatch)
-      return res.status(400).json({ error: "Invalid credentials." });
+    if (!isMatch) return res.status(400).json({ error: "Incorrect Password." });
 
     const token = jwt.sign({ id: admin._id }, process.env.JWT_SECRET);
 

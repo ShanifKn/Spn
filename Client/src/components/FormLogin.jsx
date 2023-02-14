@@ -117,7 +117,9 @@ const FormLogin = () => {
               </Link>
             </div>
             <div>
-              <Link className="text-sm text-blue-500 hover:underline">
+              <Link
+                className="text-sm text-blue-500 hover:underline"
+                to="/signin">
                 Login as Master
               </Link>
             </div>

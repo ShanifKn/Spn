@@ -1,10 +1,5 @@
 import express from "express";
-import {
-  login,
-  // loginAdmin,
-  register,
-  // registerAdmin,
-} from "../Controllers/auth.js";
+import { login, adminLogin, register } from "../Controllers/auth.js";
 
 const router = express.Router();
 
@@ -13,6 +8,6 @@ router.post("/login", login);
 router.post("/register", register);
 
 // * Admin login & registration *//
-router.post("/adminlogin", loginAdmin);
+router.post("/adminlogin", adminLogin);
 
 export default router;
