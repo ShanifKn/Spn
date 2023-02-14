@@ -1,14 +1,13 @@
 import React, { useState } from "react";
+import admin from "../../assets/admin.png";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import Logo from "../assets/logo.png";
 import LockIcon from "@mui/icons-material/Lock";
 import { Link, useNavigate } from "react-router-dom";
 import HighlightOffTwoToneIcon from "@mui/icons-material/HighlightOffTwoTone";
-import { login } from "../api/auth";
 import { useDispatch } from "react-redux";
-import { setLogin } from "../state/Slice/userSlice";
+import { setAdminLogin } from "../../state/Slice/adminSlice";
 
-const FormLogin = () => {
+const AdminForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -44,7 +43,7 @@ const FormLogin = () => {
       navigate("/404");
     } else {
       dispatch(
-        setLogin({
+        setAdminLogin({
           user: response.User.userName,
           token: response.User.token,
         })
@@ -52,7 +51,6 @@ const FormLogin = () => {
       navigate("/");
     }
   };
-
   return (
     <>
       <form className="w-full max-w-md" onSubmit={handleSubmit}>
@@ -68,10 +66,12 @@ const FormLogin = () => {
         ) : (
           ""
         )}
-        <img className="w-auto h-7 sm:h-8" src={Logo} alt="" />
-        <h1 className="mt-3 text-2xl font-semibold text-gray-800 capitalize sm:text-3xl ">
-          sign In
-        </h1>
+        <div className=" justify-center items-center">
+          <img className="w-auto h-7 sm:h-8 ml-52 " src={admin} alt="" />
+          <h1 className="mt-3 text-2xl font-semibold text-gray-800 capitalize sm:text-3xl ml-44 ">
+            Master
+          </h1>
+        </div>
 
         <div className="relative flex items-center mt-8">
           <span className="absolute">
@@ -128,4 +128,4 @@ const FormLogin = () => {
   );
 };
 
-export default FormLogin;
+export default AdminForm;
