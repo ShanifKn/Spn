@@ -15,6 +15,8 @@ const AdminForm = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  
   const handlePassword = (event) => {
     setPassword(event.target.value);
   };
@@ -47,7 +49,7 @@ const AdminForm = () => {
       dispatch(
         setAdminLogin({
           user: response.Admin.userName,
-          token: response.Admin.token,
+          token: response.token,
         })
       );
       navigate("/master");

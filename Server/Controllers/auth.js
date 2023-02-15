@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import userModel from "../models/User.js";
-import adminModel from "../models/Admin.js";
+import adminModel from "../models/Task.js";
 
 // * REGISTER USER    *//
 export const register = async (req, res) => {
@@ -69,7 +69,7 @@ export const adminLogin = async (req, res) => {
 
     // * prevent password *//
     let Admin = admin.toObject();
-    delete admin.password;
+    delete Admin.password;
 
     res.status(200).json({ token, Admin });
   } catch (err) {
