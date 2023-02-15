@@ -16,7 +16,6 @@ const AdminForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  
   const handlePassword = (event) => {
     setPassword(event.target.value);
   };
@@ -121,8 +120,10 @@ const AdminForm = () => {
               </Link>
             </div>
             <div>
-              <Link className="text-sm text-blue-500 hover:underline">
-                Login as Master
+              <Link
+                className="text-sm text-blue-500 hover:underline"
+                to="/login">
+                Login as Student
               </Link>
             </div>
           </div>

@@ -10,6 +10,7 @@ const HomePage = () => {
   const [tasks, setTask] = useState(null);
   const [answer, setAnswer] = useState("");
 
+
   const handleToggle = () => {
     setOpen(!isOpen);
   };
@@ -29,14 +30,14 @@ const HomePage = () => {
     if (answer === "") return false;
     const response = await sendAnswer(answer, id, token, user);
     if (response === 200) {
-      const task = tasks.filter((task) => task.id === id);
+      const task = tasks.filter((task) => task._id !== id);
       setTask(task);
     }
   };
   return (
     <>
       <section className="bg-white  ">
-        <div className="container px-6 py-12 mx-auto w-7/12">
+        <div className="container px-6 py-12 mx-auto w-6/12">
           <h1 className="text-2xl font-semibold text-gray-800 lg:text-3xl ">
             Frequently asked questions
           </h1>
@@ -54,45 +55,43 @@ const HomePage = () => {
           ) : (
             <div className="mt-8 space-y-8 lg:mt-12">
               {tasks.map((task, index) => (
-                <div className="p-8 bg-gray-100 rounded-lg ">
-                  <>
-                    <button className="flex items-center justify-between w-full">
-                      <h1 className="font-semibold text-gray-900 ">
-                        {task.title}
-                      </h1>
+                <div
+                  key={task._id}
+                  class="max-w-2xl px-8 py-4 bg-gray-900 rounded-lg shadow-md ">
+                  <div class="flex items-center justify-between">
+                    <span class="text-2xl font-medium text-gray-900 ">
+                      {task.title}
+                    </span>
+                  </div>
 
-                      <span
-                        onClick={handleToggle}
-                        className="text-gray-600 bg-gray-200 rounded-full">
-                        <RemoveCircleRoundedIcon />
-                      </span>
-                    </button>
+                  <div class="mt-2">
+                    <h1 class="text-xl font-bold text-white hover:text-gray-600  hover:underline">
+                      {task.question} {task.numbers[0].num1} and{" "}
+                      {task.numbers[0].num2}
+                    </h1>
+                  </div>
 
-                    <div className={isOpen ? "" : "hidden"}>
-                      <p className="mt-6 text-xl text-gray-900">
-                        {task.question} {task.numbers[0].num1} and{" "}
-                        {task.numbers[0].num2}
-                      </p>
-                      <fieldset className="w-28  space-y-1 text-gray-100">
-                        <label className="block text-sm font-medium">
-                          Total price
-                        </label>
-                        <div className="flex ">
-                          <input
-                            type="number"
-                            onChange={handleInput}
-                            value={answer}
-                            className="flex flex-1 text-black border py-4 sm:text-sm rounded-l-md focus:ring-inset  focus:ring-violet-400"
-                          />
-                          <button
-                            onClick={() => handleSubmit(task._id)}
-                            className="flex items-center ml-5 px-10   cursor-pointer sm:text-sm rounded bg-gray-700">
-                            Submit
-                          </button>
-                        </div>
-                      </fieldset>
-                    </div>
-                  </>
+                  <div class="flex items-center justify-between mt-4">
+                    <fieldset className="w-28  space-y-1 text-gray-100">
+                      <label className="block text-sm font-medium">
+                        Total price
+                      </label>
+                      <div className="flex ">
+                        <input
+                          type="number"
+                          name="answer"
+                          onChange={handleInput}
+                          value={answer}
+                          className="flex flex-1 text-black border py-4 sm:text-sm rounded-l-md focus:ring-inset  focus:ring-violet-400"
+                        />
+                        <button
+                          onClick={() => handleSubmit(task._id)}
+                          className="flex items-center ml-5 px-10   cursor-pointer sm:text-sm rounded bg-gray-700">
+                          Submit
+                        </button>
+                      </div>
+                    </fieldset>
+                  </div>
                 </div>
               ))}
             </div>

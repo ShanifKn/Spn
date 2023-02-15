@@ -46,7 +46,7 @@ const FormLogin = () => {
       dispatch(
         setLogin({
           user: response.User.userName,
-          token: response.User.token,
+          token: response.token,
         })
       );
       navigate("/");

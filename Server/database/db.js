@@ -9,7 +9,7 @@ const connectDB = async () => {
     });
   } catch (err) {
     //     res.redirect("/error");
-    console.log(err.message);
+    res.send(500);
   }
 };
 

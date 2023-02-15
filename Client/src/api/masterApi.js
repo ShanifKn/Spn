@@ -43,7 +43,6 @@ export const getTasks = async (token) => {
 
 export const getTask = async (id, token) => {
   try {
-    console.log(id);
     const response = await axios.get(`/master/task`, {
       params: {
         id: id,

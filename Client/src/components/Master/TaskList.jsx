@@ -90,7 +90,6 @@ const TaskList = () => {
     form.append("operation", selectedOperation);
 
     const response = await getResult(form, token);
-    console.log(response);
     if (response.status === 200) {
       setResult(response.data.result);
     } else {

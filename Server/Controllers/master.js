@@ -29,7 +29,6 @@ export const getTaskList = async (req, res) => {
 //* get task *//
 export const getTask = async (req, res) => {
   try {
-    console.log(req.query);
     const task = await taskModel.findOne({ _id: id });
     res.status(200).json({ task: task });
   } catch (err) {
@@ -41,7 +40,6 @@ export const getTask = async (req, res) => {
 export const addTask = async (req, res) => {
   try {
     const { title, question, num1, num2, operator, result } = req.body;
-    console.log(req.body);
     const newTask = await taskModel
       .create({
         title: title,

@@ -13,13 +13,10 @@ const ApprovalList = () => {
   useEffect(() => {
     const fetchList = async () => {
       const response = await getApprovalist(token);
-      console.log(response);
       setTask(response.data.task);
     };
     fetchList();
   }, []);
-
-  console.log(tasks);
 
   return (
     <>
